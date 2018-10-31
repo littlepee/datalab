@@ -192,7 +192,12 @@ int anyOddBit(int x)
  */
 int bang(int x)
 {
-    return 42;
+    x = (x >> 16) | x;
+    x = (x >> 8) | x;
+ 	x = (x >> 4) | x;
+ 	x = (x >> 2) | x;
+  	x = (x >> 1) | x;
+  	return ((~x) & 1);
 }
 
 /*
@@ -204,7 +209,7 @@ int bang(int x)
  */
 int bitAnd(int x, int y)
 {
-    return 42;
+	return (~((~x) | (~y)));
 }
 
 /*
@@ -216,7 +221,7 @@ int bitAnd(int x, int y)
  */
 int bitCount(int x)
 {
-    return 42;
+	return 42;
 }
 
 /*
@@ -256,7 +261,7 @@ int bitMatch(int x, int y)
  */
 int bitNor(int x, int y)
 {
-    return 42;
+    return ((~x) & (~y));
 }
 
 /*
@@ -268,7 +273,7 @@ int bitNor(int x, int y)
  */
 int bitOr(int x, int y)
 {
-    return 42;
+    return (~((~x) & (~y)));
 }
 
 /*
@@ -305,7 +310,7 @@ int bitReverse(int x)
  */
 int bitXor(int x, int y)
 {
-    return 42;
+    return ~((~(x & (~y))) & (~((~x) & y)));
 }
 
 /*
