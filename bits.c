@@ -111,7 +111,8 @@ NOTES:
  */
 int absVal(int x)
 {
-    return 42;
+    int y = x >> 31;
+    return (x ^ y) + (~y + 1);
 }
 
 /*
@@ -124,7 +125,10 @@ int absVal(int x)
  */
 int addOK(int x, int y)
 {
-    return 42;
+	int sign_x = x >> 31;
+    int sign_y = y >> 31;
+    int sign_sum = (x+y) >> 31;
+    return (((sign_x ^ sign_y) & 1) | (~((sign_x & sign_y) ^ sign_sum) & 1));
 }
 
 /*
@@ -137,7 +141,7 @@ int addOK(int x, int y)
  */
 int allEvenBits(int x)
 {
-    return 42;
+    return !(0x55555555 ^ (x & 0x55555555));
 }
 
 /*
@@ -150,7 +154,7 @@ int allEvenBits(int x)
  */
 int allOddBits(int x)
 {
-    return 42;
+    return !(0xAAAAAAAA ^ (x & 0xAAAAAAAA));
 }
 
 /*
@@ -163,7 +167,7 @@ int allOddBits(int x)
  */
 int anyEvenBit(int x)
 {
-    return 42;
+    return !!((x & 0x55555555) ^ 0);
 }
 
 /*
@@ -176,7 +180,7 @@ int anyEvenBit(int x)
  */
 int anyOddBit(int x)
 {
-    return 42;
+    return !!((x & 0xAAAAAAAA) ^ 0);
 }
 
 /*
